@@ -79,58 +79,57 @@ body {
 @media only screen and (max-width: 1250px) {
 
   header {
-       margin-bottom: 20px;
-       height: 100px;
-       padding: 20px;
-       background-color: rgb(191, 199, 243);
-       border-bottom: 2px black solid;
+    margin-bottom: 20px;
+    height: 100px;
+    padding: 20px;
+    background-color: rgb(191, 199, 243);
+    border-bottom: 2px black solid;
   }
      
   body {
-       font-family: "Roboto", sans-serif;
-       color: #252525;
-       background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
+    font-family: "Roboto", sans-serif;
+    color: #252525;
+    background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
+  }
+
+  .stored-bookmarks {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
   }
      
   .header h1 {
-       margin-top: 0;
-       text-align: center;
-       font-size: 20px;
+    margin-top: 0;
+    text-align: center;
+    font-size: 20px;
   }
    
 
   .row3 {
-       max-width: 650px;
-       margin-left: auto;
-       margin-right: auto;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
    }
 
+  .row1 .row2 {
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 40px;
+    border: black 2px solid;
+    border-radius: 20px;
+  }
+
   .row1 {
-       position: relative;
-       max-width: 80%;
-       margin-left: auto;
-       margin-right: auto;
-       height: auto;
-       padding-left: 30px;
-       padding-right: 30px;
-       margin-bottom: 40px;
-       border: black 2px solid;
-       background-color: rgb(191, 199, 243);
-       border-radius: 20px;
+    background-color: rgb(191, 199, 243);
+
   }
 
   .row2 {
-       position: relative;
-       max-width: 80%;
-       margin-left: auto;
-       margin-right: auto;
-       height: auto;
-       padding-left: 30px;
-       padding-right: 30px;
-       margin-bottom: 40px;
-       border: black 2px solid;
-       background-color: rgb(238, 213, 213);
-       border-radius: 20px;
+    background-color: rgb(238, 213, 213);
   }
 
   .name-description-box {
@@ -150,7 +149,7 @@ body {
 
   .checked {
     color: orange;
-}
+  }
 
 }
 
@@ -168,26 +167,28 @@ body {
       font-family: "Roboto", sans-serif;
       color: #252525;
       background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
-      padding-left: 15px;
+  }
+
+  .stored-bookmarks {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
   }
     
   .header h1 {
-      margin-top: 0;
-      padding-top: 30px;
-      text-align: center;
-      font-size: 30px;
+    margin-top: 0;
+    padding-top: 30px;
+    text-align: center;
+    font-size: 30px;
   }
   
   .row3 {
-      max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .row1 .row2 {
-    max-width: 70%;
-    margin-left: auto;
-    margin-right: auto;
     height: auto;
     padding-right: 30px;
     border: black 2px solid;
@@ -212,7 +213,7 @@ body {
   }
 
   .description {
-      font-size: 14px;
+      font-size: 16px;
       text-align: center;
   }
 
@@ -221,23 +222,16 @@ body {
       text-align: center;
   }
 
-  .fa-star {
-    height: 100%;
-    width: auto;
-  }
-
   .checked {
     color: orange;
   }
 
   .links {
-    display: flex;
-    justify-content: space-evenly;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
 
@@ -245,7 +239,6 @@ body {
     text-decoration: none;
     color: black;
     font-size: 20px;
-    width: 75%;
   }
 
   .link:hover {
@@ -255,11 +248,11 @@ body {
 
   .delete {
     text-align: center;
+    margin-bottom: 10px;
   }
 
   .delete-item {
     width: 100px;
-
   }
 
   .delete-item:hover {
@@ -268,9 +261,6 @@ body {
   }
 
   .stars {
-    width: auto;
-    margin-right: auto;
-    margin-left: auto;
     text-align: center;
     margin-bottom: 10px;
   }
