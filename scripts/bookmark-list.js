@@ -10,7 +10,7 @@ const bookmarkList = (function () {
   <input type="text" name="new-item-name" class="new-item-name" placeholder="Bookmark Name Here!" />
   <input type="text" name="new-item-url" class="new-item-url" placeholder="Paste URL Here!" />
   <textarea name="new-item-description" rows="5" cols="30" placeholder="Describe your Bookmark here!" class="new-item-description"></textarea>
-  <div class="radio-buttons">
+  <div class="radio-buttons" >
     <label for="title" class="radio-title">How do you rate this out of 5?</label>
 
     <label for="one" class="label">1</label>
@@ -34,29 +34,11 @@ const bookmarkList = (function () {
 
   const restoreNewButton = '<button name="subject" type="submit" class="show-new-item-box">New Bookmark</button>';
 
-  const unexpandedHTML = function () {
-    return `<div id="container1">
-    <div class="row2 bookmark-item">
-  <div class="name-description-box">
-    <h2 class="bookmark-name">Bookmark 2</h2>
-  </div>
-  <div class="stars">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-  </div>
-  <form class="expand-form">
-  <button name="expand" type="submit" class="expand-bookmark">See More!</button>
-  </form>
-  </div>
-  </div>`;
-  };
 
 
 
   function generateItemHtml(item) {
+
     let starsHtml = `<div class="stars">
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
@@ -101,7 +83,7 @@ const bookmarkList = (function () {
         <span class="fa fa-star"></span>
       </div>`;
       }
-      return `<li class="container">
+      return `<li class="container" data-item-id="${item.id}">
       <div class="row2 bookmark-item">
         <div class="name-description-box">
           <h2 class="bookmark-name">${item.title}</h2>
@@ -111,13 +93,9 @@ const bookmarkList = (function () {
         <div class="links">
           <a href="${item.url}" target="_blank" class="link">View Bookmark</a>
         </div>
-        <div class="delete">
-            <form class="reduce-form">
-                <input type="submit" class="reduce-form-button">
-            </form>
-          <button class="delete-item">
-            <span>Delete</span>
-          </button>
+        <button name="reduce-button" type="submit" class="change-button">Show Less</button>
+       
+        <button class="delete-button" type="submit" name="delete-button">Delete</button>
         </div>
       </div>
     </li>`;
@@ -159,17 +137,13 @@ const bookmarkList = (function () {
         <span class="fa fa-star"></span>
       </div>`;
       }
-      return `<li class="container">
+      return `<li class="container" data-item-id="${item.id}">
       <div class="row2 bookmark-item">
         <div class="name-description-box">
           <h2 class="bookmark-name">${item.title}</h2>
         </div>
         ${starsHtml}
-
-
-            <form class="reduce-form">
-                <input type="submit" class="reduce-form-button">
-            </form>
+        <button name="expand-button" type="submit" class="change-button">Show More</button>
    
       </div>
     </li>`;
@@ -180,8 +154,28 @@ const bookmarkList = (function () {
 
   function render() {
     let items = store.items;
+
+    if (store.filterValue === 2) {
+      items = store.items.filter(item => item.stars > 1);
+    }
+
+    if (store.filterValue === 3) {
+      items = store.items.filter(item => item.stars > 2);
+    }
+
+    if (store.filterValue === 4) {
+      items = store.items.filter(item => item.stars > 3);
+    }
+
+    if (store.filterValue === 5) {
+      items = store.items.filter(item => item.stars === 5);
+    }
+
+
+
     const bookmarksString = generateString(items);
     $('.stored-bookmarks').html(bookmarksString);
+
   }
 
   function generateString(bookmarks) {
@@ -189,77 +183,103 @@ const bookmarkList = (function () {
     return items.join('');
   }
 
+  function getItemIdFromElement(item) {
+    return $(item)
+      .closest('.container')
+      .data('item-id');
+  }
+
 
   const handleNewBookmarkClicked = function () {
-    $('.show-new-item-box').on('click', event => {
+    $('.new-box').on('click', '.show-new-item-box', event => {
       $('.new-box').html(newBookmarkForm);
-      handleClicks();
     });
   };
 
   function handleNewBookmarkSubmit() {
-    $('.new-form').submit(function (event) {
+    $('.new-box').on('submit', '.new-form', function (event) {
       event.preventDefault();
 
       let bookmarkName = $('.new-item-name').val();
       let bookmarkURL = $('.new-item-url').val();
       let bookmarkDescription = $('.new-item-description').val();
-      let bookmarkRating = $('.radio-buttons').val();
-      console.log(bookmarkName);
-      console.log(bookmarkURL);
-      console.log(bookmarkDescription);
+      let bookmarkRating = $('input[name="stars"]:checked').val();
+      let bookmarkRatingNumber = parseInt(bookmarkRating);
+
+      let newBookmark = {
+        title: bookmarkName,
+        url: bookmarkURL,
+        description: bookmarkDescription,
+        stars: bookmarkRatingNumber,
+        expanded: false,
+        id: cuid()
+      };
 
 
+
+      store.items.push(newBookmark);
 
 
       $('.new-box').html(restoreNewButton);
-      handleClicks();
+
+      render();
+
+
     });
   }
 
   function handleDropDownFilter() {
-    $('.drop-down-filter').submit(function (event) {
+    $('.filter-items-submit').on('click', function (event) {
+
       event.preventDefault();
-      handleClicks();
+
+      let dropMenu = document.getElementById('drop-down-menu');
+      var dropMenuValue = dropMenu.options[dropMenu.selectedIndex].value;
+      store.filterValue = parseInt(dropMenuValue);
+
+      render();
     });
   }
 
-  function handleReduceBookmark() {
-    $('.reduce-form').submit(function (event) {
-      event.preventDefault();
+  const handleChangeBookmark = function () {
+    $('.stored-bookmarks').on('click', '.change-button', event => {
+
+      const id = getItemIdFromElement(event.currentTarget);
+      const item = store.findById(id);
+      item.expanded = !item.expanded;
+
+      render();
+
+    });
+  };
+
+  function handleDeleteBookmark() {
+    $('.stored-bookmarks').on('click', '.delete-button', event => {
 
 
+      const id = getItemIdFromElement(event.currentTarget);
+ 
+      const item = store.findById(id);
+      store.items.splice(item, 1);
 
-      handleClicks();
+      render();
+
     });
   }
 
-  function handleExpandBookmark() {
-    $('.expand-form').submit(function (event) {
-      event.preventDefault();
 
-
-
-      handleClicks();
-    });
-  }
 
   function handleClicks() {
     handleNewBookmarkClicked();
     handleNewBookmarkSubmit();
     handleDropDownFilter();
-    handleExpandBookmark();
-    handleReduceBookmark();
+    handleChangeBookmark();
+    handleDeleteBookmark();
   }
 
   return {
     render,
-    handleNewBookmarkClicked,
-    handleNewBookmarkSubmit,
-    handleDropDownFilter,
-    handleExpandBookmark,
     handleClicks,
-
   };
 
 }());

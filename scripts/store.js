@@ -6,24 +6,11 @@
 
 const store = (function () {
 
-  const items = [
-    {
-      title: 'bookmark 1',
-      url: 'some url',
-      stars: 1,
-      description: 'a description',
-      id: 1,
-      expanded: false
-    },
-    {
-      title: 'bookmark 2',
-      url: 'another url',
-      stars: 4,
-      description: 'another description',
-      id: 2,
-      expanded: false
-    }
-  ];
+  
+
+  const findById = function(id) {
+    return this.items.find(item => item.id === id);
+  };
 
   const test = function () {
     console.log('store');
@@ -33,8 +20,12 @@ const store = (function () {
 
 
   return {
+
+    items: [],
+    filterValue: 0,
+
     test,
-    items
+    findById
   };
 
 }());
