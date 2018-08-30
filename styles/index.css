@@ -12,6 +12,10 @@ body {
   background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
 }
 
+ul {
+  list-style: none;
+}
+
 .new-form {
   display: inline-block;
   text-align: left;
@@ -31,7 +35,7 @@ body {
   text-align: center;
 }
 
-.new-item-description, .new-item-name, .new-item-url, .radio-buttons, .new-bookmark-button {
+.new-item-description, .new-item-name, .new-item-url, .radio-buttons, .new-bookmark-button, .show-new-item-box {
   margin-bottom: 5px;
   margin-top: 10px;
   margin-left: 10px;
@@ -67,6 +71,7 @@ body {
   font-size: 50px;
   padding-top: 20px;
 }
+
 
 .row3 {
   max-width: 1250px;
@@ -137,8 +142,12 @@ body {
   margin-bottom: 10px;
 }
 
-.delete-item {
+.delete-item, .reduce, .expand {
   width: 150px;
+}
+
+.reduce-bookmark:hover, .expand-bookmark:hover {
+  cursor: pointer;
 }
 
 .delete-item:hover {
@@ -298,7 +307,7 @@ body {
     margin-bottom: 10px;
   }
 
-  .delete-item {
+  .delete-item, .reduce, .expand {
     width: 100px;
   }
 
@@ -363,6 +372,8 @@ body {
   .new-item-description {
     width: 200px;
   }
+
+
   
   .new-bookmark-button {
     margin-bottom: 10px;
@@ -462,7 +473,11 @@ body {
     margin-bottom: 10px;
   }
 
-  .delete-item {
+  .reduce, .expand {
+    margin-bottom: 10px;
+  }
+
+  .delete-item, .reduce, .expand {
     width: 100px;
   }
 
