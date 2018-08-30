@@ -10,7 +10,7 @@ const store = (function () {
     {
       title: 'bookmark 1',
       url: 'some url',
-      stars: 3,
+      stars: 1,
       description: 'a description',
       id: 1,
       expanded: false

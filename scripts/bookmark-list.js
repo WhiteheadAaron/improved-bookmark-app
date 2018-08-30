@@ -57,21 +57,57 @@ const bookmarkList = (function () {
 
 
   function generateItemHtml(item) {
-
-    if (!item.expanded) {
+    let starsHtml = `<div class="stars">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+  </div>`;
+    if (item.expanded) {
+      if (item.stars === 1) {
+        starsHtml = `<div class="stars">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
+      if (item.stars === 2) {
+        starsHtml = `<div class="stars">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
+      if (item.stars === 3) {
+        starsHtml = `<div class="stars">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
+      if (item.stars === 4) {
+        starsHtml = `<div class="stars">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
       return `<li class="container">
       <div class="row2 bookmark-item">
         <div class="name-description-box">
           <h2 class="bookmark-name">${item.title}</h2>
           <p class="description">${item.description}</p>
         </div>
-        <div class="stars">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-        </div>
+        ${starsHtml}
         <div class="links">
           <a href="${item.url}" target="_blank" class="link">View Bookmark</a>
         </div>
@@ -85,6 +121,59 @@ const bookmarkList = (function () {
         </div>
       </div>
     </li>`;
+    }
+    if (!item.expanded) {
+      if (item.stars === 1) {
+        starsHtml = `<div class="stars">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
+      if (item.stars === 2) {
+        starsHtml = `<div class="stars">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
+      if (item.stars === 3) {
+        starsHtml = `<div class="stars">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
+      if (item.stars === 4) {
+        starsHtml = `<div class="stars">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
+      return `<li class="container">
+      <div class="row2 bookmark-item">
+        <div class="name-description-box">
+          <h2 class="bookmark-name">${item.title}</h2>
+        </div>
+        ${starsHtml}
+
+
+            <form class="reduce-form">
+                <input type="submit" class="reduce-form-button">
+            </form>
+   
+      </div>
+    </li>`;
+
     }
   }
 
