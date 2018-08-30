@@ -12,6 +12,49 @@ body {
   background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
 }
 
+.new-form {
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+  height: auto;
+  border: solid black 2px;
+  border-radius: 20px;
+}
+
+.top-options {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-bottom: 20px;
+  height: auto;
+  text-align: center;
+}
+
+.new-item-description, .new-item-name, .new-item-url, .radio-buttons, .new-bookmark-button {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+.new-bookmark-button {
+  margin-bottom: 10px;
+}
+
+.radio-title {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.stars-filter-title, .drop-down-menu, .filter-items-submit {
+  margin-bottom: 5px;
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .stored-bookmarks {
   margin-left: auto;
   margin-right: auto;
@@ -95,7 +138,7 @@ body {
 }
 
 .delete-item {
-  width: 100px;
+  width: 150px;
 }
 
 .delete-item:hover {
@@ -128,6 +171,50 @@ body {
     font-family: "Roboto", sans-serif;
     color: #252525;
     background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
+  }
+
+  .new-form {
+    display: inline-block;
+    text-align: left;
+    width: 80%;
+    height: auto;
+    border: solid black 2px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .top-options {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 20px;
+    height: auto;
+    text-align: center;
+  }
+  
+  .new-item-description, .new-item-name, .new-item-url, .radio-buttons, .new-bookmark-button {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  
+  .new-bookmark-button {
+    margin-bottom: 10px;
+  }
+  
+  .radio-title {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .stars-filter-title, .drop-down-menu, .filter-items-submit {
+    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .stored-bookmarks {
@@ -247,8 +334,54 @@ body {
     background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
   }
 
+  .new-form {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    height: auto;
+    border: solid black 2px;
+    border-radius: 20px;
+  }
+  
+  .top-options {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-bottom: 20px;
+    height: auto;
+    text-align: center;
+  }
+  
+  .new-item-description, .new-item-name, .new-item-url, .radio-buttons, .new-bookmark-button {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .new-item-description {
+    width: 200px;
+  }
+  
+  .new-bookmark-button {
+    margin-bottom: 10px;
+  }
+  
+  .radio-title {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .stars-filter-title, .drop-down-menu, .filter-items-submit {
+    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
   .stored-bookmarks {
-    margin-left: px;
+    margin-left: 5px;
     margin-right: 5px;
     width: auto;
   }
