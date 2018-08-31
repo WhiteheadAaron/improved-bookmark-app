@@ -14,7 +14,7 @@ const bookmarkList = (function () {
     <label for="title" class="radio-title">How do you rate this out of 5?</label>
 
     <label for="one" class="label">1</label>
-    <input type="radio" name="rating" value="1" class="radio-button" required>
+    <input type="radio" name="rating" value="1" class="radio-button">
 
     <label for="two" class="label">2</label>
     <input type="radio" name="rating" value="2" class="radio-button">
@@ -55,20 +55,12 @@ const bookmarkList = (function () {
 
   function generateItemHtml(item) {
 
-    let rowClass = 'row2';
+  
+    // let starRating = [1, 2, 3, 4, 5].map(num => {
 
-    if (store.row) {
-      rowClass = 'row1';
-    }
+    // });
 
-
-    let ratingHtml = `<div class="rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-  </div>`;
+    let ratingHtml = '<div class="rating">No rating</div>';
     if (item.rating === 1) {
       ratingHtml = `<div class="rating">
     <span class="fa fa-star checked"></span>
@@ -115,30 +107,35 @@ const bookmarkList = (function () {
   </div>`;
     }
 
+
+    const radioButtons = [1, 2, 3, 4, 5].map(num => {
+      if (num === item.rating) {
+        return `<input type="radio" class="radio-button" name="rating" value="${num}" checked>`;
+      }
+
+      return `<input type="radio" class="radio-button" name="rating" value="${num}">`;
+    });
+
+    const radioLabels = [1, 2, 3, 4, 5].map(num => {
+      return `<label for="${num}" class="label" >${num}</label>`;
+    });
+
+    const finalRadioLabels = radioLabels.toString().replace(/,/g,'');
+    const finalRadioButtons = radioButtons.toString().replace(/,/g,'');
+
+    
     let editButtonHtml = `<li class="container" data-item-id="${item.id}">
-  <div class="${rowClass}" bookmark-item">
+  <div class="row2" bookmark-item">
     <div class="name-description-box">
     <form class="edit-form">
       <label for="bookmark-title" class="edit-title-label">Title</label>
-      <input class="edit-bookmark-title" type="text" value="${item.title}" />
+      <input class="edit-bookmark-title" type="text" value="${item.title}" /><br>
+      <label for="bookmark-desc" class="edit-desc-label">Description</label>
+      <input class="edit-bookmark-desc" type="text" value="${item.desc}" /><br>
       <div class="edit-radio-buttons">
       <label for="title" class="radio-title">How do you rate this out of 5?</label>
-
-      <label for="one" class="label" value="${item.rating}">1</label>
-      <input type="radio" name="rating" value="1" class="radio-button" required>
-
-      <label for="two" class="label">2</label>
-      <input type="radio" name="rating" value="2" class="radio-button">
-
-      <label for="three" class="label">3</label>
-      <input type="radio" name="rating" value="3" class="radio-button">
-
-      <label for="four" class="label">4</label>
-      <input type="radio" name="rating" value="4" class="radio-button">
-
-      <label for="five" class="label">5</label>
-      <input type="radio" name="rating" value="5" class="radio-button">
-
+      ${finalRadioLabels}<br>
+      ${finalRadioButtons}
       </div>
       <div class="links">
       <label for="bookmark-url" class="edit-url-label">URL</label>
@@ -176,7 +173,7 @@ const bookmarkList = (function () {
       return `${editButtonHtml}`;
     }
     if (!item.expanded) {
-      
+
       return `<li class="container" data-item-id="${item.id}">
       <div class="row2 bookmark-item">
         <div class="name-description-box">
@@ -265,11 +262,10 @@ const bookmarkList = (function () {
       api.createItem(newObj, (newItemToStore) => {
         store.addItem(newItemToStore);
         render();
-      },
-        (error) => {
-          store.setError(error);
-          render();
-        });
+      }, (error) => {
+        store.setError(error);
+        render();
+      });
 
       $('.new-box').html(restoreNewButton);
 
@@ -341,14 +337,16 @@ const bookmarkList = (function () {
 
       let newTitle = $('.edit-bookmark-title').val();
       let newURL = $('.edit-bookmark-url').val();
+      let newDesc = $('.edit-bookmark-desc').val();
       let newRating = parseInt($('input[name="rating"]:checked').val());
       console.log(newRating);
       let newObj = {
         title: newTitle,
         url: newURL,
+        desc: newDesc,
         rating: newRating
       };
-      
+
 
       api.editItem(id, newObj, () => {
         store.updateItems(id, newObj);
