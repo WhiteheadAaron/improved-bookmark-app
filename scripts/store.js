@@ -26,18 +26,23 @@ const store = (function () {
     this.error = error;
   };
 
-
+  const updateItems = function(id, newObj) {
+    let itemToUpdate = this.items.find(item => item.id === id);
+    Object.assign(itemToUpdate, newObj);
+  };
 
   return {
 
     items: [],
     filterValue: 0,
     error: null,
+    edited: false,
 
     addItem,
     findById,
     findAndDelete,
-    setError
+    setError,
+    updateItems
   };
 
 }());

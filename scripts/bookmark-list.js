@@ -36,7 +36,6 @@ const bookmarkList = (function () {
 
 
 
-
   function serverError(error) {
     let message = '';
     if (error.responseJSON && error.responseJSON.message) {
@@ -56,6 +55,7 @@ const bookmarkList = (function () {
 
   function generateItemHtml(item) {
 
+
     let ratingHtml = `<div class="rating">
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
@@ -63,53 +63,90 @@ const bookmarkList = (function () {
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
   </div>`;
-    if (item.expanded) {
-      if (item.rating === 1) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
-      if (item.rating === 2) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
-      if (item.rating === 3) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
-      if (item.rating === 4) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
-      if (item.rating === 5) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-      </div>`;
-      }
-      return `<li class="container" data-item-id="${item.id}">
+    if (item.rating === 1) {
+      ratingHtml = `<div class="rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+  </div>`;
+    }
+    if (item.rating === 2) {
+      ratingHtml = `<div class="rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+  </div>`;
+    }
+    if (item.rating === 3) {
+      ratingHtml = `<div class="rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+  </div>`;
+    }
+    if (item.rating === 4) {
+      ratingHtml = `<div class="rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+  </div>`;
+    }
+    if (item.rating === 5) {
+      ratingHtml = `<div class="rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+  </div>`;
+    }
+
+    let editButtonHtml = `<li class="container" data-item-id="${item.id}">
+  <div class="row2 bookmark-item">
+    <div class="name-description-box">
+    <form class="edit-form">
+      <label for="bookmark-title" class="edit-title-label">Title</label>
+      <input class="edit-bookmark-title" type="text" value="${item.title}" />
+      <div class="edit-radio-buttons">
+      <label for="title" class="radio-title">How do you rate this out of 5?</label>
+
+      <label for="one" class="label" value="${item.rating}">1</label>
+      <input type="radio" name="rating" value="1" class="radio-button" required>
+
+      <label for="two" class="label">2</label>
+      <input type="radio" name="rating" value="2" class="radio-button">
+
+      <label for="three" class="label">3</label>
+      <input type="radio" name="rating" value="3" class="radio-button">
+
+      <label for="four" class="label">4</label>
+      <input type="radio" name="rating" value="4" class="radio-button">
+
+      <label for="five" class="label">5</label>
+      <input type="radio" name="rating" value="5" class="radio-button">
+
+      </div>
+      <div class="links">
+      <label for="bookmark-url" class="edit-url-label">URL</label>
+      <input class="edit-bookmark-url" type="text" value="${item.url}" />
+      </div>
+      <input type="submit" class="submit-edit-button">
+    </form>
+    <button class="delete-button" type="submit" name="delete-button">Delete</button>
+    </div>
+  </div>
+</li>`;
+
+    if (!item.edited) {
+      editButtonHtml = `<li class="container" data-item-id="${item.id}">
       <div class="row2 bookmark-item">
         <div class="name-description-box">
           <h2 class="bookmark-name">${item.title}</h2>
@@ -126,52 +163,14 @@ const bookmarkList = (function () {
       </div>
     </li>`;
     }
+
+
+    if (item.expanded) {
+
+      return `${editButtonHtml}`;
+    }
     if (!item.expanded) {
-      if (item.rating === 5) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-      </div>`;
-      }
-      if (item.rating === 2) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
-      if (item.rating === 3) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
-      if (item.rating === 4) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
-      if (item.rating === 1) {
-        ratingHtml = `<div class="rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
+      
       return `<li class="container" data-item-id="${item.id}">
       <div class="row2 bookmark-item">
         <div class="name-description-box">
@@ -185,6 +184,8 @@ const bookmarkList = (function () {
 
     }
   }
+
+
 
   function render() {
 
@@ -259,19 +260,12 @@ const bookmarkList = (function () {
         store.addItem(newItemToStore);
         render();
       },
-      (error) => {
-        console.log(error);
-        store.setError(error);
-        render();
-      });
-
-
-
+        (error) => {
+          store.setError(error);
+          render();
+        });
 
       $('.new-box').html(restoreNewButton);
-
-
-
 
     });
   }
@@ -322,6 +316,48 @@ const bookmarkList = (function () {
     });
   }
 
+  function handleEditBookmark() {
+    $('.stored-bookmarks').on('click', '.edit-button', (event) => {
+      event.preventDefault();
+      const id = getItemIdFromElement(event.currentTarget);
+      const item = store.findById(id);
+
+      item.edited = !item.edited;
+      render();
+    });
+  }
+
+  function handleEditSubmit() {
+    $('.stored-bookmarks').on('submit', '.edit-form', (event) => {
+      event.preventDefault();
+      const id = getItemIdFromElement(event.currentTarget);
+      const item = store.findById(id);
+
+      let newTitle = $('.edit-bookmark-title').val();
+      let newURL = $('.edit-bookmark-url').val();
+      let newRating = parseInt($('input[name="rating"]:checked').val());
+      console.log(newRating);
+      let newObj = {
+        title: newTitle,
+        url: newURL,
+        rating: newRating
+      };
+      
+
+      api.editItem(id, newObj, () => {
+        store.updateItems(id, newObj);
+        render();
+      }, (error) => {
+        store.setError(error);
+        render();
+      });
+
+
+      item.edited = !item.edited;
+      render();
+    });
+  }
+
 
 
   function handleClicks() {
@@ -331,6 +367,8 @@ const bookmarkList = (function () {
     handleChangeBookmark();
     handleDeleteBookmark();
     handleCloseError();
+    handleEditBookmark();
+    handleEditSubmit();
   }
 
   return {

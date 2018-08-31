@@ -162,6 +162,20 @@ ul {
   margin-bottom: 10px;
 }
 
+.edit-bookmark-title {
+  margin-bottom: 20px;
+}
+
+.edit-radio-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.edit-bookmark-url {
+  margin-bottom: 10px;
+}
+
+
 
 
 @media only screen and (max-width: 1250px) {
@@ -323,6 +337,19 @@ ul {
     margin-bottom: 10px;
   }
 
+  .edit-bookmark-title {
+    margin-bottom: 20px;
+  }
+
+  .edit-radio-buttons {
+    margin-bottom: 20px;
+  }
+
+  .edit-bookmark-url {
+    margin-bottom: 10px;
+  }
+
+
 }
 
 @media only screen and (max-width: 700px) {
@@ -371,7 +398,10 @@ ul {
     width: 200px;
   }
 
-
+  .edit-radio-buttons {
+    margin-left: auto;
+    margin-right: auto;
+  }
   
   .new-bookmark-button {
     margin-bottom: 10px;
@@ -391,8 +421,8 @@ ul {
 
   .stored-bookmarks {
     position: relative;
-    left: -20px;
-    width: 93%;
+    left: -35px;
+    width: 100%;
   }
     
   .header h1 {
@@ -433,13 +463,13 @@ ul {
   }
 
   .description {
-      font-size: 16px;
-      text-align: center;
+    font-size: 16px;
+    text-align: center;
   }
 
   .bookmark-name {
-      font-size: 22px;
-      text-align: center;
+    font-size: 22px;
+    text-align: center;
   }
 
   .checked {
@@ -475,6 +505,34 @@ ul {
     margin-bottom: 10px;
   }
 
+  .edit-bookmark-title {
+    margin-bottom: 20px;
+  }
+
+  .edit-radio-buttons {
+    margin-bottom: 20px;
+  }
+
+  .edit-bookmark-url {
+    margin-bottom: 10px;
+  }
+
+  .edit-button {
+    width: 50px;
+    margin-bottom: 20px;
+  }
+
+
+  .delete-button {
+    width: 60px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+  }
+
+  .change-button {
+    width: 60px;
+    text-align: center;
+  }
 
   .delete-item, .reduce, .expand {
     width: 100px;
