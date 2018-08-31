@@ -55,6 +55,12 @@ const bookmarkList = (function () {
 
   function generateItemHtml(item) {
 
+    let rowClass = 'row2';
+
+    if (store.row) {
+      rowClass = 'row1';
+    }
+
 
     let ratingHtml = `<div class="rating">
     <span class="fa fa-star checked"></span>
@@ -110,7 +116,7 @@ const bookmarkList = (function () {
     }
 
     let editButtonHtml = `<li class="container" data-item-id="${item.id}">
-  <div class="row2 bookmark-item">
+  <div class="${rowClass}" bookmark-item">
     <div class="name-description-box">
     <form class="edit-form">
       <label for="bookmark-title" class="edit-title-label">Title</label>

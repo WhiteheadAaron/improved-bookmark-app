@@ -438,11 +438,14 @@ ul {
     margin-right: auto;
   }
 
-  .row1 .row2 {
-    height: auto;
-    padding-right: 30px;
+  .row1, .row2 {
     border: black 2px solid;
     border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+    height: auto;
+    padding-bottom: 40px;
   }
 
   .row1 {
@@ -455,21 +458,18 @@ ul {
 
   .name-description-box {
     position: relative;
-    display: inline-block;
-    width: 97%;
+    display: block;
+    width: 90%;
     height: auto;
-    text-align: center;
-    left: -20px;
+    right: 10px;
   }
 
   .description {
     font-size: 16px;
-    text-align: center;
   }
 
   .bookmark-name {
     font-size: 22px;
-    text-align: center;
   }
 
   .checked {
@@ -524,14 +524,20 @@ ul {
 
 
   .delete-button {
+    position: relative;
     width: 60px;
-    margin-left: 5px;
-    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .change-button {
     width: 60px;
     text-align: center;
+  }
+
+  .submit-edit-button {
+    margin-bottom: 15px;
+    float: left;
   }
 
   .delete-item, .reduce, .expand {
