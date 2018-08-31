@@ -1,6 +1,6 @@
 'use strict';
 
-/* global store api item bookmarkList */
+/* global store api bookmarkList */
 
 // eslint-disable-next-line no-unused-vars
 

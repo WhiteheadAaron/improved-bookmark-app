@@ -56,10 +56,6 @@ const bookmarkList = (function () {
   function generateItemHtml(item) {
 
 
-    // let starRating = [1, 2, 3, 4, 5].map(num => {
-
-    // });
-
     let ratingHtml = '<div class="rating">No rating</div>';
     if (item.rating === 1) {
       ratingHtml = `<div class="rating">
@@ -187,8 +183,6 @@ const bookmarkList = (function () {
 
     }
   }
-
-
 
   function render() {
 
@@ -368,11 +362,10 @@ const bookmarkList = (function () {
       api.editItem(id, newObj, () => {
         store.updateItems(id, newObj);
         render();
-      },
-        (error) => {
-          store.setError(error);
-          render();
-        });
+      }, (error) => {
+        store.setError(error);
+        render();
+      });
 
 
       item.edited = !item.edited;

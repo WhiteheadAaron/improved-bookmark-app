@@ -6,7 +6,6 @@
 
 const api = (function () {
 
-
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/aaron';
 
   const getItems = function (callback) {
@@ -40,7 +39,6 @@ const api = (function () {
   };
 
   const editItem = function (id, newData, success, error) {
-    console.log(newData);
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
       method: 'PATCH',
@@ -50,8 +48,6 @@ const api = (function () {
       error: error
     });
   };
-
-
 
 
   return {

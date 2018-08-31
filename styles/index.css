@@ -132,6 +132,7 @@ ul {
 
 .description {
   font-size: 20px;
+  word-wrap: break-word;
 }
 
 .links {
