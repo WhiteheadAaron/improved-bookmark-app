@@ -12,6 +12,19 @@ body {
   background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
 }
 
+button {
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+button:hover {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+}
+
 .error-container {
   text-align: center;
 }
@@ -39,7 +52,6 @@ ul {
   width: 50%;
   height: auto;
   border: solid black 2px;
-  border-radius: 20px;
 }
 
 .top-options {
@@ -107,7 +119,7 @@ ul {
   padding-bottom: 10px;
   margin-bottom: 40px;
   border: black 2px solid;
-  border-radius: 20px;
+
 }
 
 .row1 {
@@ -214,7 +226,6 @@ ul {
     width: 80%;
     height: auto;
     border: solid black 2px;
-    border-radius: 20px;
     margin-bottom: 10px;
   }
   
@@ -281,7 +292,6 @@ ul {
     padding-right: 30px;
     margin-bottom: 40px;
     border: black 2px solid;
-    border-radius: 20px;
   }
 
   .row1 {
@@ -388,7 +398,6 @@ ul {
     width: 100%;
     height: auto;
     border: solid black 2px;
-    border-radius: 20px;
   }
   
   .top-options {
@@ -454,7 +463,6 @@ ul {
 
   .row1, .row2 {
     border: black 2px solid;
-    border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
     width: 85%;

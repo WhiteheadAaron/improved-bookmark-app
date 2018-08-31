@@ -360,6 +360,7 @@ const bookmarkList = (function () {
 
 
       api.editItem(id, newObj, () => {
+        console.log('hello');
         store.updateItems(id, newObj);
         render();
       }, (error) => {
