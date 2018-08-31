@@ -37,6 +37,23 @@ const bookmarkList = (function () {
 
 
 
+  function serverError(error) {
+    let message = '';
+    if (error.responseJSON && error.responseJSON.message) {
+      message = error.responseJSON.message;
+    } else {
+      message = `${error.code}: Server Error`;
+    }
+
+    return `
+      <section class="error-content">
+        <button id="cancel-error">X</button>
+        <p>${message}</p>
+      </section>
+    `;
+  }
+
+
   function generateItemHtml(item) {
 
     let ratingHtml = `<div class="rating">
@@ -169,8 +186,16 @@ const bookmarkList = (function () {
     }
   }
 
-
   function render() {
+
+
+    if (store.error) {
+      const someError = serverError(store.error);
+      $('.error-container').html(someError);
+    } else {
+      $('.error-container').empty();
+    }
+
     let items = store.items;
 
     if (store.filterValue === 2) {
@@ -207,7 +232,6 @@ const bookmarkList = (function () {
       .data('item-id');
   }
 
-
   const handleNewBookmarkClicked = function () {
     $('.new-box').on('click', '.show-new-item-box', event => {
       $('.new-box').html(newBookmarkForm);
@@ -224,10 +248,6 @@ const bookmarkList = (function () {
       let bookmarkRating = $('input[name="rating"]:checked').val();
       let bookmarkRatingNumber = parseInt(bookmarkRating);
 
-      
-
-
-
       let newObj = {
         title: bookmarkName,
         url: bookmarkURL,
@@ -235,15 +255,22 @@ const bookmarkList = (function () {
         rating: bookmarkRatingNumber
       };
 
-      api.createItem(newObj, (newItem) => {
-        store.addItem(newItem);
+      api.createItem(newObj, (newItemToStore) => {
+        store.addItem(newItemToStore);
+        render();
+      },
+      (error) => {
+        console.log(error);
+        store.setError(error);
         render();
       });
 
 
+
+
       $('.new-box').html(restoreNewButton);
 
-  
+
 
 
     });
@@ -292,6 +319,13 @@ const bookmarkList = (function () {
     });
   }
 
+  function handleCloseError() {
+    $('.error-container').on('click', '#cancel-error', () => {
+      store.setError(null);
+      render();
+    });
+  }
+
 
 
   function handleClicks() {
@@ -300,6 +334,7 @@ const bookmarkList = (function () {
     handleDropDownFilter();
     handleChangeBookmark();
     handleDeleteBookmark();
+    handleCloseError();
   }
 
   return {

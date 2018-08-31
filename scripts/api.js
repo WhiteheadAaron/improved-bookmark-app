@@ -20,26 +20,22 @@ const api = (function () {
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
       method: 'DELETE',
-      success: function (data) {
-        callback(data);
-      }
+      success: callback
     });
   };
 
-  const createItem = function (name, callback) {
+  const createItem = function (name, callback, error) {
 
     let newObj = name;
-    console.log(newObj);
 
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
       method: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(newObj),
-      success: function (data) {
-        console.log('success!');
-        callback(data);
-      }
+      success: callback,
+      error: error,
+
     });
   };
 

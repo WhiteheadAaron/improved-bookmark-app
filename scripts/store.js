@@ -12,7 +12,7 @@ const store = (function () {
     return this.items.find(item => item.id === id);
   };
 
-  
+
   const addItem = function(item) {
     this.items.push(item);
   };
@@ -22,16 +22,22 @@ const store = (function () {
     this.items = this.items.filter(item => item.id !== id);
   };
 
+  const setError = function(error) {
+    this.error = error;
+  };
+
 
 
   return {
 
     items: [],
     filterValue: 0,
+    error: null,
 
     addItem,
     findById,
-    findAndDelete
+    findAndDelete,
+    setError
   };
 
 }());

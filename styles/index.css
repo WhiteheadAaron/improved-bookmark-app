@@ -12,6 +12,10 @@ body {
   background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
 }
 
+.error-container {
+  text-align: center;
+}
+
 ul {
   list-style: none;
 }
