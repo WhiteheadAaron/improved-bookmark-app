@@ -55,7 +55,7 @@ const bookmarkList = (function () {
 
   function generateItemHtml(item) {
 
-  
+
     // let starRating = [1, 2, 3, 4, 5].map(num => {
 
     // });
@@ -120,10 +120,10 @@ const bookmarkList = (function () {
       return `<label for="${num}" class="label" >${num}</label>`;
     });
 
-    const finalRadioLabels = radioLabels.toString().replace(/,/g,'');
-    const finalRadioButtons = radioButtons.toString().replace(/,/g,'');
+    const finalRadioLabels = radioLabels.toString().replace(/,/g, '');
+    const finalRadioButtons = radioButtons.toString().replace(/,/g, '');
 
-    
+
     let editButtonHtml = `<li class="container" data-item-id="${item.id}">
   <div class="row2" bookmark-item">
     <div class="name-description-box">
@@ -311,6 +311,24 @@ const bookmarkList = (function () {
     });
   }
 
+  function handleDeleteAllClicked() {
+    $('.delete-all').on('click', event => {
+      event.preventDefault();
+      let result = confirm('Are you sure?');
+      if (result) {
+        for (let i = 0; i < store.items.length; i++) {
+          // console.log(store.items[0].id);
+          api.deleteItem(store.items[i].id, () => {
+            store.findAndDelete([i].id);
+            store.items = [];
+            render();
+          });
+        }
+
+      }
+    });
+  }
+
   function handleCloseError() {
     $('.error-container').on('click', '#cancel-error', () => {
       store.setError(null);
@@ -348,15 +366,13 @@ const bookmarkList = (function () {
 
 
       api.editItem(id, newObj, () => {
-        console.log('hello');
         store.updateItems(id, newObj);
         render();
-      }, 
-      (error) => {
-        console.log('error', error);
-        store.setError(error);
-        render();
-      });
+      },
+        (error) => {
+          store.setError(error);
+          render();
+        });
 
 
       item.edited = !item.edited;
@@ -375,6 +391,7 @@ const bookmarkList = (function () {
     handleCloseError();
     handleEditBookmark();
     handleEditSubmit();
+    handleDeleteAllClicked();
   }
 
   return {

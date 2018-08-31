@@ -20,6 +20,10 @@ ul {
   list-style: none;
 }
 
+.delete-all {
+  margin-top: 10px;
+}
+
 .label {
   margin-left: 12px;
   padding-right: 3px;
