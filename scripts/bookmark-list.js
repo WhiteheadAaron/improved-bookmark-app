@@ -9,12 +9,12 @@ const bookmarkList = (function () {
   const newBookmarkForm = `<form class="new-form">
   <input type="text" name="new-item-name" class="new-item-name" placeholder="Bookmark Name Here!" />
   <input type="text" name="new-item-url" class="new-item-url" placeholder="Paste URL Here!" />
-  <textarea name="new-item-description" rows="5" cols="30" placeholder="Describe your Bookmark here!" class="new-item-description"></textarea>
+  <textarea name="new-item-description" rows="5" cols="30" placeholder="Describe your Bookmark here! (Optional)" class="new-item-description"></textarea>
   <div class="radio-buttons" >
     <label for="title" class="radio-title">How do you rate this out of 5?</label>
 
     <label for="one" class="label">1</label>
-    <input type="radio" name="rating" value="1" class="radio-button">
+    <input type="radio" name="rating" value="1" class="radio-button" required>
 
     <label for="two" class="label">2</label>
     <input type="radio" name="rating" value="2" class="radio-button">
