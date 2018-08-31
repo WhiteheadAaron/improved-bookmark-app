@@ -1,6 +1,6 @@
 'use strict';
 
-/* global store*/
+/* global store api*/
 
 // eslint-disable-next-line no-unused-vars
 
@@ -14,19 +14,19 @@ const bookmarkList = (function () {
     <label for="title" class="radio-title">How do you rate this out of 5?</label>
 
     <label for="one" class="label">1</label>
-    <input type="radio" name="stars" value="1" class="radio-button">
+    <input type="radio" name="rating" value="1" class="radio-button">
 
     <label for="two" class="label">2</label>
-    <input type="radio" name="stars" value="2" class="radio-button">
+    <input type="radio" name="rating" value="2" class="radio-button">
 
     <label for="three" class="label">3</label>
-    <input type="radio" name="stars" value="3" class="radio-button">
+    <input type="radio" name="rating" value="3" class="radio-button">
 
     <label for="four" class="label">4</label>
-    <input type="radio" name="stars" value="4" class="radio-button">
+    <input type="radio" name="rating" value="4" class="radio-button">
 
     <label for="five" class="label">5</label>
-    <input type="radio" name="stars" value="5" class="radio-button">
+    <input type="radio" name="rating" value="5" class="radio-button">
 
   </div>
   <input type="submit" class="new-bookmark-button">
@@ -39,7 +39,7 @@ const bookmarkList = (function () {
 
   function generateItemHtml(item) {
 
-    let starsHtml = `<div class="stars">
+    let ratingHtml = `<div class="rating">
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
@@ -47,8 +47,8 @@ const bookmarkList = (function () {
     <span class="fa fa-star checked"></span>
   </div>`;
     if (item.expanded) {
-      if (item.stars === 1) {
-        starsHtml = `<div class="stars">
+      if (item.rating === 1) {
+        ratingHtml = `<div class="rating">
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
         <span class="fa fa-star"></span>
@@ -56,8 +56,8 @@ const bookmarkList = (function () {
         <span class="fa fa-star"></span>
       </div>`;
       }
-      if (item.stars === 2) {
-        starsHtml = `<div class="stars">
+      if (item.rating === 2) {
+        ratingHtml = `<div class="rating">
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
@@ -65,8 +65,8 @@ const bookmarkList = (function () {
         <span class="fa fa-star"></span>
       </div>`;
       }
-      if (item.stars === 3) {
-        starsHtml = `<div class="stars">
+      if (item.rating === 3) {
+        ratingHtml = `<div class="rating">
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -74,22 +74,31 @@ const bookmarkList = (function () {
         <span class="fa fa-star"></span>
       </div>`;
       }
-      if (item.stars === 4) {
-        starsHtml = `<div class="stars">
+      if (item.rating === 4) {
+        ratingHtml = `<div class="rating">
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
+      </div>`;
+      }
+      if (item.rating === 5) {
+        ratingHtml = `<div class="rating">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
       </div>`;
       }
       return `<li class="container" data-item-id="${item.id}">
       <div class="row2 bookmark-item">
         <div class="name-description-box">
           <h2 class="bookmark-name">${item.title}</h2>
-          <p class="description">${item.description}</p>
+          <p class="description">${item.desc}</p>
         </div>
-        ${starsHtml}
+        ${ratingHtml}
         <div class="links">
           <a href="${item.url}" target="_blank" class="link">View Bookmark</a>
         </div>
@@ -101,26 +110,26 @@ const bookmarkList = (function () {
     </li>`;
     }
     if (!item.expanded) {
-      if (item.stars === 1) {
-        starsHtml = `<div class="stars">
+      if (item.rating === 5) {
+        ratingHtml = `<div class="rating">
         <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+      </div>`;
+      }
+      if (item.rating === 2) {
+        ratingHtml = `<div class="rating">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
         <span class="fa fa-star"></span>
         <span class="fa fa-star"></span>
       </div>`;
       }
-      if (item.stars === 2) {
-        starsHtml = `<div class="stars">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>`;
-      }
-      if (item.stars === 3) {
-        starsHtml = `<div class="stars">
+      if (item.rating === 3) {
+        ratingHtml = `<div class="rating">
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -128,12 +137,21 @@ const bookmarkList = (function () {
         <span class="fa fa-star"></span>
       </div>`;
       }
-      if (item.stars === 4) {
-        starsHtml = `<div class="stars">
+      if (item.rating === 4) {
+        ratingHtml = `<div class="rating">
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+      </div>`;
+      }
+      if (item.rating === 1) {
+        ratingHtml = `<div class="rating">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
         <span class="fa fa-star"></span>
       </div>`;
       }
@@ -142,7 +160,7 @@ const bookmarkList = (function () {
         <div class="name-description-box">
           <h2 class="bookmark-name">${item.title}</h2>
         </div>
-        ${starsHtml}
+        ${ratingHtml}
         <button name="expand-button" type="submit" class="change-button">Show More</button>
    
       </div>
@@ -156,19 +174,19 @@ const bookmarkList = (function () {
     let items = store.items;
 
     if (store.filterValue === 2) {
-      items = store.items.filter(item => item.stars > 1);
+      items = store.items.filter(item => item.rating > 1);
     }
 
     if (store.filterValue === 3) {
-      items = store.items.filter(item => item.stars > 2);
+      items = store.items.filter(item => item.rating > 2);
     }
 
     if (store.filterValue === 4) {
-      items = store.items.filter(item => item.stars > 3);
+      items = store.items.filter(item => item.rating > 3);
     }
 
     if (store.filterValue === 5) {
-      items = store.items.filter(item => item.stars === 5);
+      items = store.items.filter(item => item.rating === 5);
     }
 
 
@@ -203,26 +221,29 @@ const bookmarkList = (function () {
       let bookmarkName = $('.new-item-name').val();
       let bookmarkURL = $('.new-item-url').val();
       let bookmarkDescription = $('.new-item-description').val();
-      let bookmarkRating = $('input[name="stars"]:checked').val();
+      let bookmarkRating = $('input[name="rating"]:checked').val();
       let bookmarkRatingNumber = parseInt(bookmarkRating);
 
-      let newBookmark = {
+      
+
+
+
+      let newObj = {
         title: bookmarkName,
         url: bookmarkURL,
-        description: bookmarkDescription,
-        stars: bookmarkRatingNumber,
-        expanded: false,
-        id: cuid()
+        desc: bookmarkDescription,
+        rating: bookmarkRatingNumber
       };
 
-
-
-      store.items.push(newBookmark);
+      api.createItem(newObj, (newItem) => {
+        store.addItem(newItem);
+        render();
+      });
 
 
       $('.new-box').html(restoreNewButton);
 
-      render();
+  
 
 
     });
@@ -248,6 +269,7 @@ const bookmarkList = (function () {
       const item = store.findById(id);
       item.expanded = !item.expanded;
 
+
       render();
 
     });
@@ -255,15 +277,18 @@ const bookmarkList = (function () {
 
   function handleDeleteBookmark() {
     $('.stored-bookmarks').on('click', '.delete-button', event => {
-
-
       const id = getItemIdFromElement(event.currentTarget);
- 
       const item = store.findById(id);
       store.items.splice(item, 1);
 
-      render();
+      api.deleteItem(id, () => {
+        store.findAndDelete(id);
+        render();
+      });
 
+
+
+      render();
     });
   }
 

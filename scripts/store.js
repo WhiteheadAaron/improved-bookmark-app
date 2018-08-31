@@ -12,10 +12,15 @@ const store = (function () {
     return this.items.find(item => item.id === id);
   };
 
-  const test = function () {
-    console.log('store');
+  
+  const addItem = function(item) {
+    this.items.push(item);
   };
 
+
+  const findAndDelete = function(id) {
+    this.items = this.items.filter(item => item.id !== id);
+  };
 
 
 
@@ -24,8 +29,9 @@ const store = (function () {
     items: [],
     filterValue: 0,
 
-    test,
-    findById
+    addItem,
+    findById,
+    findAndDelete
   };
 
 }());

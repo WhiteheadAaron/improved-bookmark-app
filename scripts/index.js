@@ -10,4 +10,9 @@ $(document).ready(function () {
   bookmarkList.handleClicks();
 
 
+  api.getItems((items) => {
+    items.forEach((item) => store.addItem(item));
+    bookmarkList.render();
+  });
+
 });
