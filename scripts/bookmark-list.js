@@ -155,7 +155,7 @@ const bookmarkList = (function () {
         <div class="links">
           <a href="${item.url}" target="_blank" class="link">View Bookmark</a>
         </div>
-        <button name="reduce-button" type="submit" class="change-button">- Less</button>
+        <button name="reduce-button" type="submit" class="change-button">Less</button>
         <button name="edit-button" type="submit" class="edit-button">Edit</button>
         <button class="delete-button" type="submit" name="delete-button">Delete</button>
         </div>
@@ -176,7 +176,7 @@ const bookmarkList = (function () {
           <h2 class="bookmark-name">${item.title}</h2>
         </div>
         ${ratingHtml}
-        <button name="expand-button" type="submit" class="change-button">+ More</button>
+        <button name="expand-button" type="submit" class="change-button">More</button>
    
       </div>
     </li>`;
