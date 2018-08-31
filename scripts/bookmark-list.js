@@ -339,7 +339,6 @@ const bookmarkList = (function () {
       let newURL = $('.edit-bookmark-url').val();
       let newDesc = $('.edit-bookmark-desc').val();
       let newRating = parseInt($('input[name="rating"]:checked').val());
-      console.log(newRating);
       let newObj = {
         title: newTitle,
         url: newURL,
@@ -349,9 +348,12 @@ const bookmarkList = (function () {
 
 
       api.editItem(id, newObj, () => {
+        console.log('hello');
         store.updateItems(id, newObj);
         render();
-      }, (error) => {
+      }, 
+      (error) => {
+        console.log('error', error);
         store.setError(error);
         render();
       });

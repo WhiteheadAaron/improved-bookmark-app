@@ -40,6 +40,7 @@ const api = (function () {
   };
 
   const editItem = function (id, newData, success, error) {
+    console.log(newData);
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
       method: 'PATCH',
