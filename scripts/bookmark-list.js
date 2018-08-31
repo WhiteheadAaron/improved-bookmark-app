@@ -119,8 +119,8 @@ const bookmarkList = (function () {
         <div class="links">
           <a href="${item.url}" target="_blank" class="link">View Bookmark</a>
         </div>
-        <button name="reduce-button" type="submit" class="change-button">Show Less</button>
-       
+        <button name="reduce-button" type="submit" class="change-button">- Less</button>
+        <button name="edit-button" type="submit" class="edit-button">Edit</button>
         <button class="delete-button" type="submit" name="delete-button">Delete</button>
         </div>
       </div>
@@ -178,7 +178,7 @@ const bookmarkList = (function () {
           <h2 class="bookmark-name">${item.title}</h2>
         </div>
         ${ratingHtml}
-        <button name="expand-button" type="submit" class="change-button">Show More</button>
+        <button name="expand-button" type="submit" class="change-button">+ More</button>
    
       </div>
     </li>`;
@@ -305,8 +305,6 @@ const bookmarkList = (function () {
   function handleDeleteBookmark() {
     $('.stored-bookmarks').on('click', '.delete-button', event => {
       const id = getItemIdFromElement(event.currentTarget);
-      const item = store.findById(id);
-      store.items.splice(item, 1);
 
       api.deleteItem(id, () => {
         store.findAndDelete(id);
@@ -314,8 +312,6 @@ const bookmarkList = (function () {
       });
 
 
-
-      render();
     });
   }
 

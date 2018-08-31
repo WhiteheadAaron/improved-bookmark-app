@@ -131,7 +131,6 @@ ul {
 
 
 .link {
-  text-decoration: none;
   color: black;
   font-size: 20px;
 }
@@ -141,21 +140,16 @@ ul {
   text-decoration: underline;
 }
 
-.delete {
-  text-align: center;
-  margin-bottom: 10px;
-}
 
 .delete-item, .reduce, .expand {
   width: 150px;
 }
 
-.reduce-bookmark:hover, .expand-bookmark:hover {
-  cursor: pointer;
+.delete-button {
+  float: right;
 }
 
-.delete-item:hover {
-  background-color: red;
+.delete-button:hover {
   cursor: pointer;
 }
 
@@ -396,9 +390,9 @@ ul {
   }
 
   .stored-bookmarks {
-    margin-left: 5px;
-    margin-right: 5px;
-    width: auto;
+    position: relative;
+    left: -20px;
+    width: 93%;
   }
     
   .header h1 {
@@ -480,6 +474,7 @@ ul {
   .reduce, .expand {
     margin-bottom: 10px;
   }
+
 
   .delete-item, .reduce, .expand {
     width: 100px;
