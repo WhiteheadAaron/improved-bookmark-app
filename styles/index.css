@@ -2,14 +2,12 @@ header {
   margin-bottom: 40px;
   height: 100px;
   padding: 20px;
-  background-color: rgb(191, 199, 243);
-  border-bottom: 2px black solid;
+  border-bottom: .5px black solid;
 }
 
 body {
   font-family: "Roboto", sans-serif;
   color: #252525;
-  background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
 }
 
 button {
@@ -122,14 +120,6 @@ ul {
 
 }
 
-.row1 {
-  background-color: rgb(191, 199, 243);
-}
-
-.row2 {
-  background-color: rgb(238, 213, 213);
-}
-
 .name-description-box {
   display: inline-block;
   width: 100%;
@@ -159,10 +149,10 @@ ul {
 .link {
   color: black;
   font-size: 20px;
+  text-decoration: none;
 }
 
 .link:hover {
-  color: white;
   text-decoration: underline;
 }
 
@@ -210,14 +200,12 @@ ul {
     margin-bottom: 20px;
     height: 100px;
     padding: 20px;
-    background-color: rgb(191, 199, 243);
-    border-bottom: 2px black solid;
+    border-bottom: .5px black solid;
   }
      
   body {
     font-family: "Roboto", sans-serif;
     color: #252525;
-    background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
   }
 
   .new-form {
@@ -294,14 +282,6 @@ ul {
     border: black 2px solid;
   }
 
-  .row1 {
-    background-color: rgb(191, 199, 243);
-  }
-
-  .row2 {
-    background-color: rgb(238, 213, 213);
-  }
-
   .name-description-box {
     display: inline-block;
     width: 90%;
@@ -334,7 +314,6 @@ ul {
   }
 
   .link:hover {
-    color: white;
     text-decoration: underline;
   }
 
@@ -382,14 +361,12 @@ ul {
     margin-bottom: 20px;
     height: 100px;
     padding: 20px;
-    background-color: rgb(191, 199, 243);
-    border-bottom: 2px black solid;
+    border-bottom: .5px black solid;
     }
     
   body {
     font-family: "Roboto", sans-serif;
     color: #252525;
-    background: linear-gradient(to right, rgb(212, 212, 247), white, rgb(241, 180, 180));
   }
 
   .new-form {
@@ -470,14 +447,6 @@ ul {
     padding-bottom: 40px;
   }
 
-  .row1 {
-    background-color: rgb(191, 199, 243);
-  }
-
-  .row2 {
-    background-color: rgb(238, 213, 213);
-  }
-
   .name-description-box {
     position: relative;
     display: block;
@@ -514,7 +483,6 @@ ul {
   }
 
   .link:hover {
-    color: white;
     text-decoration: underline;
   }
 
